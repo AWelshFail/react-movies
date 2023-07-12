@@ -7,13 +7,9 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import './Home.css';
 
-
-// API keys
-const API_KEY_ARRAY = ["k_4gvizmjv", "k_6npoyq2n", "k_9uxy48gg", "k_d5nc6sfs", "k_atxl86be", "k_e1mhcbum", "k_2xigzzuc", "k_3dmz78gz"]
-export const API_KEY = API_KEY_ARRAY[3];
+export const API_KEY = "7a9c166d";
 
 var first_count = true;
-//var search_header = "";
 
 const Container = styled.div`
 display: flex;
@@ -75,10 +71,6 @@ font-style: italic;
 background: black;
 `;
 
-//const SearchHeader = styled.div`
-//margin-left: 20px;
-//text-transform: capitalize;
-//`;
 
 function MostPopular() {
   const [searchQuery, updateSearchQuery] = useState();
@@ -90,8 +82,11 @@ function MostPopular() {
   const fetchData = async (searchString) => {
     // eslint-disable-next-line eqeqeq
     if (searchString == null || searchString == "") {
-      const response = await axios.get(
-          `https://imdb-api.com/en/API/MostPopularMovies/${API_KEY}`
+
+    const response = await axios.get(
+
+          //`https://imdb-api.com/en/API/MostPopularMovies/${API_KEY}`
+          `https://www.omdbapi.com/?i=tt3896198&apikey=${API_KEY}`
       )
       
       //search_header = "Showing Results For: Most Popular Movies";
@@ -99,8 +94,10 @@ function MostPopular() {
       updateMovieList(response.data.items)
 
     } else {
+
       const response = await axios.get(
-          `https://imdb-api.com/API/AdvancedSearch/${API_KEY}/?title=${searchString}`
+          //`https://imdb-api.com/API/AdvancedSearch/${API_KEY}/?title=${searchString}`
+          `https://www.omdbapi.com/?s=${searchString}&apikey=${API_KEY}`
       )
       //search_header = "Showing Results For: " + searchString;
       updateMovieList(response.data.results)

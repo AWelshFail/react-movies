@@ -201,7 +201,7 @@ function Chat({socket, username, room, movieTitle}){
                 const joinMessageData = {
                     room: room,
                     author: "System:",
-                    message: Author + " has joined the " + movieTitle + " chat"
+                    message: Author + " has joined the chat"
                 }
                 setMessageList((list) => [...list, joinMessageData]);
                 
@@ -210,7 +210,7 @@ function Chat({socket, username, room, movieTitle}){
                 const leaveMessageData = {
                     room: room,
                     author: "System:",
-                    message: username + " has left the " + movieTitle + " chat"
+                    message: username + " has left the chat"
                 }
                 setMessageList((list) => [...list, leaveMessageData]);
             })

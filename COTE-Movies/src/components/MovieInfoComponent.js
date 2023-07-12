@@ -117,8 +117,6 @@ const Desc = styled.div`
 
 const MovieInfoComponent = (props) => {
 
-    // NOTE: The API key is ?i instead of ?s as we are searching for a particular imdbID rather than movie Title.
-    // As shown in API documentation.
 
     const { selectedMovie } = props;
     // eslint-disable-next-line no-unused-vars
@@ -132,17 +130,12 @@ const MovieInfoComponent = (props) => {
       localStorage.setItem('VideoID', selectedMovie)
     }
 
-    
-    // As selectedMovie is receiving the ImdbID, it needs to be a prop.
-    //
-    // Get the API via selectedMovie prop's imdbID and key, then
-    // executive the response, and parse that response.data to setMovieInfo.
     useEffect(() => {
 
       const fetchMovieInfo = async () => {
-
+   
         // Get Request
-      await axios.get(`https://imdb-api.com/en/API/Title/${API_KEY}/${selectedMovie}`,).then((response) =>
+      await axios.get(`https://www.omdbapi.com/?i=${selectedMovie}&apikey=${API_KEY}`,).then((response) =>
       setMovieInfo(response.data));
       window.scrollTo({
         top: 0,
@@ -154,17 +147,28 @@ const MovieInfoComponent = (props) => {
 
         const fetchTrailerInfo = async () => {
         
-          // Get Request
-        await axios.get(`https://imdb-api.com/en/API/YouTubeTrailer/${API_KEY}/${selectedMovie}`,).then((response) =>
-        setTrailerInfo(response.data.videoId));
+          // Get Request for Trailer API
+
+          const options = {
+            method: 'GET',
+            url: 'https://mdblist.p.rapidapi.com/',
+            // imdb ID from current movie
+            params: {i: `${selectedMovie}`},
+            headers: {
+              'X-RapidAPI-Key': '2e39d35a90mshaa2ae26c25c86adp10fb25jsn8a8076032168',
+              'X-RapidAPI-Host': 'mdblist.p.rapidapi.com'
+            }
+          };
+
+        const response = await axios.request(options).then((response) =>
+
+        // the API response is a youtube direct URL, to embed we need to remove most of this URL to just grab the videoID at the end
+        // this videoID will be sent to youtubeEmbed component
+        setTrailerInfo(response.data.trailer.substr(28)));
+
         setData()
         
         }; fetchTrailerInfo()}, );
-
-      // useEffect(() => {
-      //   const fetchChatApp = async () => {
-      //     ChatApp();
-      //   }; ChatApp()}, );
         
     return (
       
@@ -172,23 +176,23 @@ const MovieInfoComponent = (props) => {
         {movieInfo ? (
           <>            
             
-            <CoverImage src={movieInfo?.image} alt={movieInfo?.title} />
+            <CoverImage src={movieInfo?.Poster} alt={movieInfo?.Title} />
             
             <InfoColumn>
-            <MovieName><span>{movieInfo?.title}</span></MovieName>
-              <MovieInfo>Type: <span>{movieInfo?.type}</span></MovieInfo>
-              <MovieInfo>Director: <span>{movieInfo?.directors}</span></MovieInfo>
-              <MovieInfo>IMDB Rating: <span>{movieInfo.imDbRating}</span></MovieInfo>
-              <MovieInfo>Year: <span>{movieInfo.year}</span></MovieInfo>
-              <MovieInfo>Released: <span>{movieInfo.releaseDate}</span></MovieInfo>
-              <MovieInfo>Languages: <span>{movieInfo.languages}</span></MovieInfo>
-              <MovieInfo>Metascore: <span>{movieInfo.metacriticRating}</span></MovieInfo>
-              <MovieInfo>Rated: <span>{movieInfo?.contentRating}</span></MovieInfo>
-              <MovieInfo>Runtime: <span>{movieInfo?.runtimeStr}</span></MovieInfo>
-              <MovieInfo>Actors: <span>{movieInfo?.stars}</span></MovieInfo>
-              <MovieInfo>Awards: <Desc><span>{movieInfo?.awards}</span></Desc></MovieInfo>
-              <MovieInfo>Genre: <span>{movieInfo?.genres}</span></MovieInfo>
-              <MovieInfo>Description: <Desc><span>{movieInfo?.plot}</span></Desc></MovieInfo>
+            <MovieName><span>{movieInfo?.Title}</span></MovieName>
+              <MovieInfo>Type: <span>{movieInfo?.Type}</span></MovieInfo>
+              <MovieInfo>Director: <span>{movieInfo?.Director}</span></MovieInfo>
+              <MovieInfo>IMDB Rating: <span>{movieInfo.imdbRating}</span></MovieInfo>
+              <MovieInfo>Year: <span>{movieInfo.Year}</span></MovieInfo>
+              <MovieInfo>Released: <span>{movieInfo.Released}</span></MovieInfo>
+              <MovieInfo>Language: <span>{movieInfo.Language}</span></MovieInfo>
+              <MovieInfo>Metascore: <span>{movieInfo.Metascore}</span></MovieInfo>
+              <MovieInfo>Rated: <span>{movieInfo?.Rated}</span></MovieInfo>
+              <MovieInfo>Runtime: <span>{movieInfo?.Runtime}</span></MovieInfo>
+              <MovieInfo>Actors: <span>{movieInfo?.Actors}</span></MovieInfo>
+              <MovieInfo>Awards: <Desc><span>{movieInfo?.Awards}</span></Desc></MovieInfo>
+              <MovieInfo>Genres: <span>{movieInfo?.Genre}</span></MovieInfo>
+              <MovieInfo>Description: <Desc><span>{movieInfo?.Plot}</span></Desc></MovieInfo>
             </InfoColumn>
             
             <Close onClick={() => props.onMovieSelect()}>X</Close>
@@ -200,21 +204,16 @@ const MovieInfoComponent = (props) => {
       <Trailer>
           <VideoContainer>
             
-              <MovieName>{movieInfo?.title} Trailer</MovieName>
+              <MovieName>{movieInfo?.Title} Trailer</MovieName>
               <br></br>
               <br></br>
               <YoutubeEmbed embedId={trailerInfo} />
-
             
           </VideoContainer>
 
           <ChatContainer>
             
             <ChatApp selectMovie={selectedMovie} movieTitle={movieInfo?.title}/>
-            
-          
-          
-            
             
           </ChatContainer>
         </Trailer></>

@@ -35,9 +35,9 @@ const Navbar = () => {
         <Button onClick={"document.querySelector(#reload)"}><NavLink to="/#" activeStyle>
                 Home
             </NavLink></Button>
-        <Button><NavLink to="/MostPopular" activeStyle>
+        {/* <Button><NavLink to="/MostPopular" activeStyle>
                 Most Popular
-        </NavLink></Button>
+        </NavLink></Button> */}
         <Button><NavLink to={profDirVar} activeStyle>
                 My Profile
         </NavLink></Button>

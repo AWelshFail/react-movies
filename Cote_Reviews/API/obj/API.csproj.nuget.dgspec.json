@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\eddim\\Desktop\\Uni 2021\\Systems\\react-movies\\Cote_Reviews\\API\\API.csproj": {}
+    "C:\\Users\\olive\\Dropbox\\PC\\Documents\\VS Code Projects\\react-movies\\cote_reviews\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\eddim\\Desktop\\Uni 2021\\Systems\\react-movies\\Cote_Reviews\\API\\API.csproj": {
+    "C:\\Users\\olive\\Dropbox\\PC\\Documents\\VS Code Projects\\react-movies\\cote_reviews\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\eddim\\Desktop\\Uni 2021\\Systems\\react-movies\\Cote_Reviews\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\olive\\Dropbox\\PC\\Documents\\VS Code Projects\\react-movies\\cote_reviews\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\eddim\\Desktop\\Uni 2021\\Systems\\react-movies\\Cote_Reviews\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\eddim\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\eddim\\Desktop\\Uni 2021\\Systems\\react-movies\\Cote_Reviews\\API\\obj\\",
+        "projectPath": "C:\\Users\\olive\\Dropbox\\PC\\Documents\\VS Code Projects\\react-movies\\cote_reviews\\api\\API.csproj",
+        "packagesPath": "C:\\Users\\olive\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\olive\\Dropbox\\PC\\Documents\\VS Code Projects\\react-movies\\cote_reviews\\api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\eddim\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\olive\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,10 +65,29 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[5.0.17, 5.0.17]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[5.0.0, 5.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -81,7 +96,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

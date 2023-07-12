@@ -14,12 +14,6 @@ const io = new Server(server, {
     },
   });
 
-
-
-
-
-
-
 io.on('connection', function(socket){
     console.log(`a user connected: ${socket.id}`);
 
@@ -38,10 +32,6 @@ io.on('connection', function(socket){
         socket.to(data.room).emit("receive_message", data);
         socket.emit(data)
     }) 
-    // socket.on('chat message', function(msg){
-    //     io.emit('chat message', msg);
-    //     console.log('messages: ' + JSON.stringify(msg));
-    // });
     
     socket.on("room_disconnect", (data, username) => {
         socket.leave(data)

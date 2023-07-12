@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import ChatApp from "./ChatApp"
 
 const MovieContainer = styled.div`
 display: flex;
@@ -44,21 +43,14 @@ justify-content: space-between;
 
 const MovieComponent = (props) => {
 
-    // Assign the API content to the movie prop which
-    // currently contains the type and index of search results!
-   // const { Title, Year, imdbID, Type, Poster } = props.movie;
+   const { Title, Year, imdbID, Poster } = props.movie;
 
-   //<MovieInfo>Type: {type}</MovieInfo>
-
-    // removed id from const and onMoveSelect parse in props method!
-
-    const { id, title, description, year, image } = props.movie;
     
-    return <MovieContainer onClick={ () => props.onMovieSelect(id) }>
-        <CoverImage src={image} />
-            <MovieName>{title}</MovieName>
+    return <MovieContainer onClick={ () => props.onMovieSelect(imdbID) }>
+        <CoverImage src={Poster} />
+            <MovieName>{Title}</MovieName>
                 <InfoColumn>
-            <MovieInfo>Year: {description} {year}</MovieInfo>
+            <MovieInfo>Year: {Year}</MovieInfo>
             
             
         </InfoColumn>
